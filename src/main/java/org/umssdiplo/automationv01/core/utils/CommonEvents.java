@@ -119,4 +119,25 @@ public class CommonEvents {
         builder.moveToElement(webElement).build().perform();
     }
 
+    public static void waitWebElementIsVisible(WebElement webElement) {
+        ManageDriver.getInstance().getWebDriverWait().until(ExpectedConditions.visibilityOf(webElement));
+    }
+
+    public static void waitWebElementClickable(WebElement webElement) {
+        ManageDriver.getInstance().getWebDriverWait().until(ExpectedConditions.elementToBeClickable(webElement));
+    }
+
+    public static void waitWebElementLocated(String name) {
+        String xpathFinder = "//img[contains(@title,'"+name+"')]";
+        ManageDriver.getInstance().getWebDriverWait().until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpathFinder)));
+    }
+
+    public static WebElement findElementByXpath(String element) {
+        WebElement webElement = null;
+        if(ManageDriver.getInstance().getWebDriver().findElements(By.xpath(element)).size() > 0){
+             webElement = ManageDriver.getInstance().getWebDriver().findElement(By.xpath(element));
+        }
+        return  webElement;
+    }
+
 }
