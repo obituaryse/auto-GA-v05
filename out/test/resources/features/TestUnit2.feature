@@ -56,7 +56,6 @@ Feature: test from Person page
     And write in the question 6 the answer "at" and "in" and "at" and "in"
     Then click in button "Check Answers"
     And validate if the answers are correct
-    And click in the next view page
 
   Scenario: take test level 1, unit 2 Activity 4 Grammar and Vocabulary
     Given enter the person page
