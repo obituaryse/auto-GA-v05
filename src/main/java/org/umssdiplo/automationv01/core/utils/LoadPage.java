@@ -9,4 +9,16 @@ public final class LoadPage {
                 .navigate().to(PropertyAccessor.getInstance().getBaseUrl());
         return new Login();
     }
+
+    public static Login loginPage2() {
+        ManageDriver.getInstance().getWebDriver()
+                .navigate().to(PropertyAccessor.getInstance().getBaseUrl2());
+        return new Login();
+    }
+
+    public static Login loginPage3() {
+        ManageDriver.getInstance().getWebDriver()
+                .navigate().to(PropertyAccessor.getInstance().getBaseUrl3());
+        return new Login();
+    }
 }
