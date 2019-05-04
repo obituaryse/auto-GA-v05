@@ -1,6 +1,7 @@
 package org.umssdiplo.automationv01.core.utils;
 
 import org.umssdiplo.automationv01.core.customwebdriver.ManageDriver;
+import org.umssdiplo.automationv01.core.managepage.Isocode;
 import org.umssdiplo.automationv01.core.managepage.Login.Login;
 import org.umssdiplo.automationv01.core.managepage.PersonPage;
 
@@ -15,5 +16,11 @@ public final class LoadPage {
         ManageDriver.getInstance().getWebDriver()
                 .navigate().to(PropertyAccessor.getInstance().getBaseUrlPerson());
         return new PersonPage();
+    }
+
+    public static Isocode loginPageIsocode() {
+        ManageDriver.getInstance().getWebDriver()
+                .navigate().to(PropertyAccessor.getInstance().getUrlIsocode());
+        return new Isocode();
     }
 }

@@ -86,4 +86,37 @@ public class PersonSteps {
     public void clickInTheNextViewPage() {
         personPage.nextViewPage();
     }
+
+    @And("^start with the unit (\\d+)$")
+    public void startWithTheUnit(String element) {
+        personPage.clickInStart(element);
+    }
+
+    @And("^select the option \"([^\"]*)\" in question (\\d+)$")
+    public void selectTheOptionInQuestion(String option, int question) throws Throwable {
+        boolean aux = personPage.selectAnoption(option, question);
+        Assert.assertTrue(aux,"No se pudo dar seleccionar la respuesta para la pregunta "+question);
+    }
+
+    @And("^drap the element \"([^\"]*)\" and drop in option \"([^\"]*)\"$")
+    public void drapTheElementAndDropInOption(String from, String to) throws Throwable {
+        boolean aux = personPage.dragAndDropOption(from,to);
+        Assert.assertTrue(aux,"No se pudo  arrastrar y soltar los elementos"+from+" y "+to);
+    }
+
+    @And("^click in button Next$")
+    public void clickInButtonNext() {
+        personPage.clickInNext();
+    }
+
+    @And("^drap the element \"([^\"]*)\" and drop in section \"([^\"]*)\" in answer \"([^\"]*)\"$")
+    public void drapTheElementAndDropInAnswerInSection(String from, String section, String to) throws Throwable {
+        boolean aux = personPage.dragAndDropAnswer(from, section, to);
+        Assert.assertTrue(aux,"No se pudo dar click en la pregunta ");
+    }
+
+    @And("^down with the scroll bar$")
+    public void downWithTheScrollBar() {
+        personPage.downScrollbar();
+    }
 }

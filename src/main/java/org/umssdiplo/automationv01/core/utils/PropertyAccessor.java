@@ -9,6 +9,7 @@ public class PropertyAccessor {
     private static final String BROWSER = "browser";
     private static final String BASE_URL = "baseurl";
     private static final String BASE_URL_PERSON = "baseurlPerson";
+    private static final String BASE_URL_ISOCODE = "baseurlIsocode";
 
     private static PropertyAccessor PropertyAccessor;
     private Properties properties;
@@ -66,5 +67,9 @@ public class PropertyAccessor {
 
     public String getBaseUrlPerson() {
         return getDataProperty(BASE_URL_PERSON);
+    }
+
+    public String getUrlIsocode() {
+        return getDataProperty(BASE_URL_ISOCODE);
     }
 }

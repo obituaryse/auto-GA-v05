@@ -35,6 +35,12 @@ public class PersonPage  extends BasePage  {
     @FindBy(xpath = "//div[@class='iap-drag-content iap-fill-content']")
     private WebElement questions;
 
+    @FindBy(xpath = "//a[@data-uuid='a85584f7-6328-4017-b53b-80f0dbcd614c_1441883247']")
+    private WebElement startUnit;
+
+    @FindBy(xpath = "/html/body/div[2]/div[2]/div/div/div/section/div[2]/div/div[3]/div/div/div[2]/div[1]/div/div/div/div/div/div/div/div[2]/footer/div/div/div/article/span[3]")
+    private WebElement buttonNext;
+
     public void clickInElement(String element) {
         String xpathFinder = "//a[@href='/topnotch3e/practice/level1.html']";
         System.out.println(xpathFinder);
@@ -114,5 +120,84 @@ public class PersonPage  extends BasePage  {
 
     public void nextViewPage() {
         CommonEvents.clickInNextView();
+    }
+
+    public void clickInStart(String element) {
+
+        if (element.equals("1")){
+            CommonEvents.clickButton(startUnitOne);
+        }else if (element.equals("2")){
+            CommonEvents.clickButton(startUnit);
+            webElementsFalse = CommonEvents.findElementsByText("False");
+            webElementsTrue = CommonEvents.findElementsByText("True");
+        }else if(element.equals("3")){
+            CommonEvents.clickButton(startUnitTwo);
+            selects = CommonEvents.findWebElementsSelects();
+            System.out.println("TAMANYY"+selects.size());
+        }else if(element.equals("4")){
+            CommonEvents.clickButton(startUnitfour);
+        }
+
+
+    }
+
+    public boolean selectAnoption(String option, int question) {
+        boolean aux = false;
+        if (question>=1 && question <=4){
+            for (int i = 0; i < selects.size(); i++) {
+                if (i == question-1){
+                    System.out.println("TEXTO"+selects.get(i).getText());
+                    CommonEvents.clickButton(selects.get(i));
+                    WebElement opcion = CommonEvents.findElementByContent(selects.get(i),option);
+                    if (opcion != null){
+                        System.out.println("no es nuloooo"+opcion.getText());
+                        CommonEvents.waitWebElementVisible(opcion);
+                        CommonEvents.clickButton(opcion);
+                        aux = true;
+                    }
+                }
+            }
+        }
+        return aux;
+    }
+
+    public boolean dragAndDropOption(String from, String to) {
+        WebElement elementFrom = CommonEvents.findElementForSpan(from);
+        System.out.println("elemento111"+elementFrom.toString());
+        WebElement elementTo = CommonEvents.findElementForDrop(to);
+        System.out.println("elementoTOOO"+elementTo.toString());
+        if (elementFrom!=null && elementTo!=null){
+            CommonEvents.drapAndDropFunction(elementFrom,elementTo);
+            return true;
+        }else{
+            return false;
+        }
+
+    }
+
+    public void clickInNext() {
+        System.out.println("antes de dar clickccccccccc");
+        CommonEvents.clickButton(buttonNext);
+    }
+
+    public boolean dragAndDropAnswer(String from, String section, String to) {
+        WebElement elementFrom = CommonEvents.findElementForSpanNew(from);
+        System.out.println("elemento111"+elementFrom.toString());
+        WebElement elementTo = CommonEvents.findElementForDropByAnswer(section,to);
+        System.out.println("elementoTOOO"+elementTo.toString());
+        CommonEvents.waitWebElementVisible(elementFrom);
+        CommonEvents.waitWebElementClickable(elementFrom);
+        CommonEvents.waitWebElementVisible(elementFrom);
+        CommonEvents.waitWebElementClickable(elementTo);
+        if (elementFrom!=null && elementTo!=null){
+            CommonEvents.drapAndDropFunction(elementFrom,elementTo);
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public void downScrollbar() {
+        CommonEvents.scrollPage();
     }
 }
