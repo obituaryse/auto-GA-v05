@@ -8,6 +8,10 @@ import java.util.Properties;
 public class PropertyAccessor {
     private static final String BROWSER = "browser";
     private static final String BASE_URL = "baseurl";
+    private static final String USER = "username";
+    private static final String PASSWORD = "password";
+    private static final String BASE_URL_PERSON = "baseurlPerson";
+    private static final String BASE_URL_ISOCODE = "baseurlIsocode";
 
     private static PropertyAccessor PropertyAccessor;
     private Properties properties;
@@ -55,11 +59,19 @@ public class PropertyAccessor {
         return getDataProperty(BASE_URL);
     }
 
+    public String getUrlPerson(){
+        return getDataProperty(BASE_URL_PERSON);
+    }
+
     public String getUser() {
-        return null;
+        return properties.getProperty(USER);
     }
 
     public String getPassword() {
-        return null;
+        return properties.getProperty(PASSWORD);
+    }
+
+    public String getUrlIsocode() {
+        return getDataProperty(BASE_URL_ISOCODE);
     }
 }
